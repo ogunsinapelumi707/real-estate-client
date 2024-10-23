@@ -1,19 +1,73 @@
+import { useState } from "react";
 import "./newPostPage.scss";
+import ReactQuill from "react-quill" ;
+import "react-quill/dist/quill.snow.css";
+import apiReuest from "../../lib/apiRequest";
+import UploadWidget from "../../components/UploadWidget/UploadWidget";
+import { useNavigate } from "react-router-dom";
+
+
 
 function NewPostPage() {
+  const [value, setValue] = useState("")
+  const [error, setError] = useState("")
+  const [images, setImages] = useState([])
+  const navigate  = useNavigate()
+
+
+  const handleSubmit = async(e) =>{
+    e.preventDefault()
+
+    const formData = new FormData(e.target)
+    const inputs = Object.fromEntries(formData)
+
+    try {
+      const response = await apiReuest.post("/posts", {
+        postData:{
+          "title": inputs.title,
+          "price": parseInt(inputs.price),
+          "images": images,
+          "address": inputs.address,
+          "city": inputs.city,
+          "bedroom": parseInt(inputs.bedroom),
+          "bathroom": parseInt(inputs.bathroom),
+          "type": inputs.type,
+          "property": inputs.property,
+          "latitude": inputs.latitude,
+          "longitude": inputs.longitude,
+          "userId": "66d7115c4dc2bc0defad0b0f"
+      },
+      postDetail:{
+        "desc":         value,
+        "utilities":    inputs.utilities,
+        "pet":          inputs.pet,           
+        "income" :      inputs.income,
+        "size":          parseInt(inputs.size),
+        "school":        parseInt(inputs.school),
+        "bus":           parseInt(inputs.bus),        
+        "restaurant":    parseInt(inputs.restaurant)
+      }
+    })
+    navigate("/singlePost")
+    } catch (error) {
+      
+    }
+
+    console.log(inputs)
+  }
   return (
     <div className="newPostPage">
       <div className="formContainer">
         <h1>Add New Post</h1>
         <div className="wrapper">
-          <form>
-            <div className="item">
+          <form onSubmit={handleSubmit}>
+            <div className="item"> 
               <label htmlFor="title">Title</label>
               <input id="title" name="title" type="text" />
             </div>
             <div className="item">
               <label htmlFor="price">Price</label>
-              <input id="price" name="price" type="number" />
+              <input id="price" min={0} name="price" type="number" />
             </div>
             <div className="item">
               <label htmlFor="address">Address</label>
@@ -21,7 +75,9 @@ function NewPostPage() {
             </div>
             <div className="item description">
               <label htmlFor="desc">Description</label>
+              <ReactQuill theme="snow" onChange={setValue} value={value}/>
             </div>
+           
             <div className="item">
               <label htmlFor="city">City</label>
               <input id="city" name="city" type="text" />
@@ -86,7 +142,7 @@ function NewPostPage() {
             </div>
             <div className="item">
               <label htmlFor="size">Total Size (sqft)</label>
-              <input min={0} id="size" name="size" type="number" />
+              <input min={0} id="size"  name="size" type="number" />
             </div>
             <div className="item">
               <label htmlFor="school">School</label>
@@ -101,10 +157,28 @@ function NewPostPage() {
               <input min={0} id="restaurant" name="restaurant" type="number" />
             </div>
             <button className="sendButton">Add</button>
+            {
+              error && <span>{error}</span>
+            }
           </form>
         </div>
       </div>
-      <div className="sideContainer"></div>
+      <div className="sideContainer">
+        {
+          images.map((image, index) =>{
+           return <img src={image} key={index} alt=""/>
+          })
+        }
+        <UploadWidget uwConfig={{
+          multiple: true,
+          cloudName: "pelumi4",
+          uploadPreset: "estate",
+          maxImageFileSize: 2000000,
+          folder:"posts"
+        }}
+        setState={setImages}
+        />
+      </div>
     </div>
   );
 }
