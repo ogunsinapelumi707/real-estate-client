@@ -19,7 +19,7 @@ import { authContext } from "../../context/AuthContext";
 
  function RequiredAuth() {
   const {currentUser} = useContext(authContext)
- 
+ console.log("currentUser", currentUser)
   return !currentUser ? (
     <Navigate to="/login"/> ):
    ( <div className="layout">
