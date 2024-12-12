@@ -5,11 +5,11 @@ import "react-quill/dist/quill.snow.css";
 import apiReuest from "../../lib/apiRequest";
 import UploadWidget from "../../components/UploadWidget/UploadWidget";
 import { useNavigate } from "react-router-dom";
-
+import DOMPurify from "dompurify";
 
 
 function NewPostPage() {
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState("") 
   const [error, setError] = useState("")
   const [images, setImages] = useState([])
   const navigate  = useNavigate()
@@ -20,7 +20,13 @@ function NewPostPage() {
 
     const formData = new FormData(e.target)
     const inputs = Object.fromEntries(formData)
+    const sanitizedValue = DOMPurify.sanitize(value);
 
+    // Ensure description isn't empty
+    if (!sanitizedValue.trim()) {
+      setError("Description is required");
+      return;
+    }
     try {
       const response = await apiReuest.post("/posts", {
         postData:{
@@ -34,8 +40,7 @@ function NewPostPage() {
           "type": inputs.type,
           "property": inputs.property,
           "latitude": inputs.latitude,
-          "longitude": inputs.longitude,
-          "userId": "66d7115c4dc2bc0defad0b0f"
+          "longitude": inputs.longitude 
       },
       postDetail:{
         "desc":         value,
@@ -48,7 +53,7 @@ function NewPostPage() {
         "restaurant":    parseInt(inputs.restaurant)
       }
     })
-    navigate("/singlePost")
+    navigate("/"+ response.data.id)
     } catch (error) {
       
     }
@@ -75,7 +80,21 @@ function NewPostPage() {
             </div>
             <div className="item description">
               <label htmlFor="desc">Description</label>
-              <ReactQuill theme="snow" onChange={setValue} value={value}/>
+              <ReactQuill
+                theme="snow"
+                value={value}
+                onChange={setValue}
+                placeholder="Write a detailed description here..."
+                modules={{
+                  toolbar: [
+                    [{ header: "1" }, { header: "2" }, { font: [] }],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    ["bold", "italic", "underline", "strike"],
+                    ["link", "image"],
+                    ["clean"],
+                  ],
+                }}
+              />
             </div>
            
             <div className="item">

@@ -43,7 +43,7 @@
     input {
       border: none;
       padding: 0px 10px;
-      width: 200px;
+      width: 330px;
 
       @include lg {
         padding: 0px 5px;
@@ -71,12 +71,16 @@
         border: 1px solid #999;
       }
     }
-
-    button {
-      border: none;
-      cursor: pointer;
+    a{
       background-color: #fece51;
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+       button {
+      border: none;
+      cursor: pointer;
+     
 
       @include sm{
         padding: 10px;
@@ -87,5 +91,7 @@
         height: 24px;
       }
     }
+    }
+   
   }
 }
