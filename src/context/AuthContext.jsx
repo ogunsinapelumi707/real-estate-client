@@ -5,6 +5,7 @@ export const authContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(() => {
         const storedUser = localStorage.getItem('userInfo');
+         console.log("Stored user info:", storedUser); // Debug log
         if (storedUser) {
             try {
                 return JSON.parse(storedUser);
