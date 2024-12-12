@@ -12,7 +12,7 @@ import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NewPostPage from "./routes/newPostPage/newPostPage"
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
-import { profilePosts } from "../../backend/controllers/user.controllers";
+
 
 function App() {
   const router = createBrowserRouter([
