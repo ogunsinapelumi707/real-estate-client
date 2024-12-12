@@ -18,12 +18,14 @@ export const AuthContextProvider = ({ children }) => {
     });
 
     const updateUser = (data) => {
+        console.log("Updating user:", data); // Debug log
         setCurrentUser(data);
     };
 
     useEffect(() => {
         
         if (currentUser !== null) {
+            console.log("currentUser changed:", currentUser); // Debug log
             try {
                 localStorage.setItem('userInfo', JSON.stringify(currentUser));
             } catch (error) {
