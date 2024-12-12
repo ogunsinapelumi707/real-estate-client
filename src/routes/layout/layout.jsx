@@ -5,6 +5,8 @@ import { useContext } from "react";
 import { authContext } from "../../context/AuthContext";
 
  function Layout() {
+  const {currentUser} = useContext(authContext)
+ console.log("currentUser", currentUser)
   return (
     <div className="layout">
       <div className="navbar">
