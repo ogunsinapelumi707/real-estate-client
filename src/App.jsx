@@ -17,58 +17,54 @@ import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loade
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/", // Public routes
       element: <Layout />,
-      children:[
+      children: [
         {
-          path:"/",
-          element:<HomePage/>
+          index: true, // Default route for "/"
+          element: <HomePage />,
         },
         {
-          path:"/list",
-          element:<ListPage/>,
+          path: "list", // Nested path (no leading slash)
+          element: <ListPage />,
           loader: listPageLoader,
         },
         {
-          path:"/:id",
-          element:<SinglePage/>,
+          path: ":id", // Dynamic route for SinglePage
+          element: <SinglePage />,
           loader: singlePageLoader,
         },
-        
         {
-          path:"/login",
-          element:<Login/>
+          path: "login",
+          element: <Login />,
         },
         {
-          path:"/register",
-          element:<Register/>
-        }
-      ]
-    }, 
+          path: "register",
+          element: <Register />,
+        },
+      ],
+    },
     {
-      element: <RequiredAuth/>,
-      children:[
+      element: <RequiredAuth />, // Protected routes
+      children: [
         {
-          path:"/profile",
-          element:<ProfilePage/>,
-          loader: profilePageLoader
+          path: "profile",
+          element: <ProfilePage />,
+          loader: profilePageLoader,
         },
         {
-          path:"/profile/update",
-          element:<ProfileUpdatePage/>
+          path: "profile/update",
+          element: <ProfileUpdatePage />,
         },
         {
-          path:"/add",
-          element:<NewPostPage/>
+          path: "add",
+          element: <NewPostPage />,
         },
-      ]
-    }
+      ],
+    },
   ]);
 
-  return (
-
-    <RouterProvider router={router}/>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
