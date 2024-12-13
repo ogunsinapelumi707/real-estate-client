@@ -32,7 +32,7 @@ function ProfilePage() {
             <span>
               Avatar:
               <img
-                src={currentUser.userInfo.avatar ? currentUser.userInfo.avatar : "noavatar.jpg"}
+                src={currentUser.userInfo.avatar ? currentUser.avatar : "noavatar.jpg"}
                 alt=""
               />
             </span>
