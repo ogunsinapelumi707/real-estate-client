@@ -18,6 +18,9 @@ import { authContext } from "../../context/AuthContext";
     </div>
   );
 }
+useEffect(() => {
+    console.log("AuthContextProvider initialized:", currentUser);
+}, [currentUser]);
 
  function RequiredAuth() {
   const {currentUser} = useContext(authContext)
