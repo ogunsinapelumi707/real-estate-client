@@ -20,7 +20,9 @@ export const listPageLoader = async({ request, params }) => {
 export const profilePageLoader = async({ request, params }) => {
     try {
         const query = request.url.split("?")[1];
-        const postPromise = await apiRequest("/users/profilePosts");
+        const postPromise = await apiRequest("/users/profilePosts", {
+            withCredentials: true, // Send cookies
+        });
         return defer({
             postResponse: postPromise
         });
