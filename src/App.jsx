@@ -24,46 +24,47 @@ function App() {
           path:"/",
           element:<HomePage/>
         },
-        /* {
-          path:"/list",
-          element:<ListPage/>,
-          loader: listPageLoader,
-        },
-        {
-          path:"/:id",
-          element:<SinglePage/>,
-          loader: singlePageLoader,
-        },
+       // {
+       //    path:"/list",
+       //    element:<ListPage/>,
+       //    loader: listPageLoader,
+       //  },
+       //  {
+       //    path:"/:id",
+       //    element:<SinglePage/>,
+       //    loader: singlePageLoader,
+       //  },
         
-        {
-          path:"/login",
-          element:<Login/>
-        },
-        {
-          path:"/register",
-          element:<Register/>
-        }
+       //  {
+       //    path:"/login",
+       //    element:<Login/>
+       //  },
+       //  {
+       //    path:"/register",
+       //    element:<Register/>
+       //  }
       ]
-    }, 
-    {
-      path: "/",
-      element: <RequiredAuth/>,
-      children:[
-        {
-          path:"/profile",
-          element:<ProfilePage/>,
-          loader: profilePageLoader
-        },
-        {
-          path:"/profile/update",
-          element:<ProfileUpdatePage/>
-        },
-        {
-          path:"/add",
-          element:<NewPostPage/>
-        },
-      ]
-    } */
+    } 
+    // {
+    //   path: "/",
+    //   element: <RequiredAuth/>,
+    //   children:[
+    //     {
+    //       path:"/profile",
+    //       element:<ProfilePage/>,
+    //       loader: profilePageLoader
+    //     },
+    //     {
+    //       path:"/profile/update",
+    //       element:<ProfileUpdatePage/>
+    //     },
+    //     {
+    //       path:"/add",
+    //       element:<NewPostPage/>
+    //     },
+    //   ]
+      
+    // } 
   ]);
 
   return (
