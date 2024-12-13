@@ -27,7 +27,7 @@ function Login() {
     try {
       const response = await apiReuest.post("/auth/login", {
         username, password
-      })
+      } { withCredentials: true })
       updateUser(response.data)
       //localStorage.setItem("userInfo", JSON.stringify(response.data))
       navigate("/")
