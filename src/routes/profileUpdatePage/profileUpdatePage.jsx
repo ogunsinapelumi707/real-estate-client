@@ -17,7 +17,7 @@ function ProfileUpdatePage() {
     const {username, email, password} = Object.fromEntries(formData)
 
     try {
-      const response = await apiRequest.put(`/users/${currentUser.id}`, {username, email, password, avatar: avatar[0]})
+      const response = await apiRequest.put(`/users/${currentUser.userInfo.id}`, {username, email, password, avatar: avatar[0]})
       updateUser(response.data)
       console.log(response)
       navigate('/profile')
