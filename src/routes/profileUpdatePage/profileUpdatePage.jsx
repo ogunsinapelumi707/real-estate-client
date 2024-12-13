@@ -37,7 +37,7 @@ function ProfileUpdatePage() {
               id="username"
               name="username"
               type="text"
-              defaultValue={currentUser.username}
+              defaultValue={currentUser.userInfo.username}
             />
           </div>
           <div className="item">
@@ -46,7 +46,7 @@ function ProfileUpdatePage() {
               id="email"
               name="email"
               type="email"
-              defaultValue={currentUser.email}
+              defaultValue={currentUser.userInfo.email}
             />
           </div>
           <div className="item">
@@ -60,7 +60,7 @@ function ProfileUpdatePage() {
         </form>
       </div>
       <div className="sideContainer">
-        <img src={avatar[0] || currentUser.avatar || "/noavatar.jpg"} alt="" className="avatar" />
+        <img src={avatar[0] || currentUser.userInfo.avatar || "/noavatar.jpg"} alt="" className="avatar" />
         <UploadWidget uwConfig={{
           cloudName: "pelumi4",
           uploadPreset: "estate",
