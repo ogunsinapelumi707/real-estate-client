@@ -24,7 +24,7 @@ function App() {
           path:"/",
           element:<HomePage/>
         },
-        {
+       {
           path:"/list",
           element:<ListPage/>,
           loader: listPageLoader,
@@ -44,9 +44,8 @@ function App() {
           element:<Register/>
         }
       ]
-    }, 
+    } ,
     {
-      path: "/",
       element: <RequiredAuth/>,
       children:[
         {
@@ -63,7 +62,8 @@ function App() {
           element:<NewPostPage/>
         },
       ]
-    }
+      
+    } 
   ]);
 
   return (
