@@ -1,7 +1,7 @@
 import "./layout.scss";
 import Navbar from "../../components/navbar/Navbar"
 import { Navigate, Outlet } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { authContext } from "../../context/AuthContext";
 
  function Layout() {
