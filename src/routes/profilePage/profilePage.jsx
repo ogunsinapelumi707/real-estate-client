@@ -32,15 +32,15 @@ function ProfilePage() {
             <span>
               Avatar:
               <img
-                src={currentUser.avatar ? currentUser.avatar : "noavatar.jpg"}
+                src={currentUser.userInfo.avatar ? currentUser.userInfo.avatar : "noavatar.jpg"}
                 alt=""
               />
             </span>
             <span>
-              Username: <b>{currentUser.username}</b>
+              Username: <b>{currentUser.userInfo.username}</b>
             </span>
             <span>
-              E-mail: <b>{currentUser.email}</b>
+              E-mail: <b>{currentUser.userInfo.email}</b>
             </span>
             <button onClick={handleLogOut}>Logout</button>
           </div>
