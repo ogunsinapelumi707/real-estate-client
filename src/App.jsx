@@ -24,7 +24,7 @@ function App() {
           path:"/",
           element:<HomePage/>
         },
-        {
+        /* {
           path:"/list",
           element:<ListPage/>,
           loader: listPageLoader,
@@ -63,7 +63,7 @@ function App() {
           element:<NewPostPage/>
         },
       ]
-    }
+    } */
   ]);
 
   return (
